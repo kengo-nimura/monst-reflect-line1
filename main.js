@@ -9,6 +9,10 @@ const maxReflect = 5;
 
 let angle = -Math.PI / 2;
 
+// 背景画像
+const bg = new Image();
+bg.src = "stage.png";   // ← スクショのファイル名
+
 canvas.addEventListener("pointermove", e => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -52,10 +56,10 @@ function drawReflectLine() {
     if (t === ty) dy *= -1;
   }
 
-  ctx.strokeStyle = "rgba(220,240,255,0.9)";
+  ctx.strokeStyle = "rgba(220,240,255,0.95)";
   ctx.lineWidth = 3;
   ctx.shadowColor = "#9fdfff";
-  ctx.shadowBlur = 10;
+  ctx.shadowBlur = 12;
   ctx.stroke();
 
   ctx.shadowBlur = 0;
@@ -64,12 +68,18 @@ function drawReflectLine() {
 function draw() {
   ctx.clearRect(0, 0, W, H);
 
+  // 🔹 背景（モンスト画面）
+  ctx.drawImage(bg, 0, 0, W, H);
+
+  // 🔹 キャラ位置
   ctx.beginPath();
   ctx.arc(start.x, start.y, 10, 0, Math.PI * 2);
-  ctx.fillStyle = "#0f0";
+  ctx.fillStyle = "#00ff88";
   ctx.fill();
 
   drawReflectLine();
 }
 
-draw();
+// 画像読み込み後に描画
+bg.onload = draw;
+
