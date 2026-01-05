@@ -20,7 +20,25 @@
   </style>
 </head>
 <body>
-  <canvas id="stage" width="360" height="640"></canvas>
+  <div style="position: relative;">
+    <canvas id="stage" width="360" height="640"></canvas>
+
+    <!-- 画像変更ボタン -->
+    <input
+      type="file"
+      id="imageInput"
+      accept="image/*"
+      style="
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        color: white;
+      "
+    />
+  </div>
+
   <script src="main.js"></script>
 </body>
+
 </html>
